@@ -1,0 +1,47 @@
+managed implementation in class zbp_zcr2023_worker unique;
+strict ( 2 );
+
+/* Root Entity Travel */
+define behavior for ZR_ZCR2023_Worker alias Worker
+persistent table zcr2023_worker
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Claims { create; }
+
+   field ( readonly, numbering : managed ) WorkerUuid; //wird automatisch bei Anlegen erzeugt
+
+
+   mapping for zcr2023_worker corresponding {//travel damit man das mit _ erkennen kann
+    BeginDate = begin_date;
+    WorkerNr = worker_nr;
+    WorkerUuid = worker_uuid;
+   }
+}
+
+/* Child Entity Claim*/
+define behavior for ZR_ZCR2023_Claim alias Claim
+persistent table zcr2023_claim
+lock dependent by _Worker
+authorization dependent by _Worker
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) ClaimUuid; //wird automatisch bei Anlegen erzeugt
+  field ( readonly ) WorkerUuid;
+
+  association _Worker;
+
+  mapping for zcr2023_claim corresponding
+  {
+  ClaimUuid = claim_uuid;
+  WorkerUuid = worker_uuid;
+
+  }
+}

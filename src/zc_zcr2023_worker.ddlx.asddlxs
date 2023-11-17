@@ -1,0 +1,47 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{ 
+    typeNamePlural: 'Workers',
+    title.value: 'WorkerNr',
+    description.value: 'Surname'
+}
+annotate entity ZC_ZCR2023_Worker
+    with 
+{
+
+/* Facets */
+    @UI.facet: 
+    [
+        { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Worker Details', targetQualifier: 'WorkerDetails' },
+        { position: 15, type: #LINEITEM_REFERENCE, targetElement: '_Claims', label: 'Claim Details' }, //fehler? nur Claim?
+        { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'AdminData'}
+    ]
+
+    /*Fields*/
+    @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+    WorkerUuid;
+    
+    @UI.lineItem: [{  position: 20 }] //angezeigt unten
+    @UI.selectionField: [{ position: 10 }] //für suche
+    @UI.fieldGroup: [{ position: 20, qualifier: 'WorkerDetails' }]
+    WorkerNr;
+    
+    @UI.lineItem: [{  position: 30 }] //angezeigt unten
+  //  @UI.selectionField: [{ position: 20 }] //für suche
+    @UI.fieldGroup: [{ position: 30, qualifier: 'WorkerDetails' }]
+    Surname;
+    
+    @UI.lineItem: [{  position: 40 }] //angezeigt unten
+   //@UI.selectionField: [{ position: 30 }] //für suche
+    @UI.fieldGroup: [{ position: 40, qualifier: 'WorkerDetails' }]
+    Forename;
+    
+    @UI.lineItem: [{  position: 50 }] //angezeigt unten
+    @UI.selectionField: [{ position: 20 }] //für suche
+    @UI.fieldGroup: [{ position: 50, qualifier: 'WorkerDetails' }]
+    BeginDate;
+
+
+   // element_name;
+    
+}

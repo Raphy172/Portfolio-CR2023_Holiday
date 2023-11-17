@@ -1,0 +1,5 @@
+@EndUserText.label: 'Worker'
+define service ZUI_ZCR2023_Worker {
+  expose ZC_ZCR2023_Worker as Worker;
+  expose ZC_ZCR2023_Claim  as Claim;
+}
