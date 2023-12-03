@@ -16,7 +16,17 @@ define root view entity ZC_ZCR2023_Worker
       @Search.fuzzinessThreshold: 0.7
       Forename,
       BeginDate,
+      CreatedBy,
+      CreatedAt,
+      LastChangedBy,
+      LastChangedAt,
+      
+      /* Transient Data */
+ 
 
       //Associations
-      _Claims : redirected to composition child ZC_ZCR2023_Claim
+      _Claim : redirected to composition child ZC_ZCR2023_Claim,
+      _Request : redirected to composition child ZC_ZCR2023_REQUEST
+      
+  
 }

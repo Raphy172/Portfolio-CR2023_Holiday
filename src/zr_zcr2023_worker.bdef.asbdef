@@ -1,31 +1,50 @@
 managed implementation in class zbp_zcr2023_worker unique;
 strict ( 2 );
+with draft;
 
 /* Root Entity Travel */
 define behavior for ZR_ZCR2023_Worker alias Worker
 persistent table zcr2023_worker
+draft table zcr2023_wrk_d
 lock master
+total etag LastChangedAt
 authorization master ( instance )
 //etag master <field_name>
 {
   create;
   update;
   delete;
-  association _Claims { create; }
 
-   field ( readonly, numbering : managed ) WorkerUuid; //wird automatisch bei Anlegen erzeugt
+  association _Claim { create; with draft; }
+  association _Request { create; with draft; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft determine action Prepare;
+  draft action Resume;
 
 
-   mapping for zcr2023_worker corresponding {//travel damit man das mit _ erkennen kann
-    BeginDate = begin_date;
-    WorkerNr = worker_nr;
-    WorkerUuid = worker_uuid;
-   }
+  field ( readonly, numbering : managed ) WorkerUuid; //wird automatisch bei Anlegen erzeugt
+
+
+  mapping for zcr2023_worker corresponding
+    {
+       //travel damit man das mit _ erkennen kann
+      BeginDate  = begin_date;
+      WorkerNr   = worker_nr;
+      WorkerUuid = worker_uuid;
+      CreatedAt = created_at;
+      CreatedBy = created_by;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+    }
 }
 
 /* Child Entity Claim*/
 define behavior for ZR_ZCR2023_Claim alias Claim
 persistent table zcr2023_claim
+draft table zcr2023_claim_d
 lock dependent by _Worker
 authorization dependent by _Worker
 //etag master <field_name>
@@ -36,12 +55,44 @@ authorization dependent by _Worker
   field ( readonly, numbering : managed ) ClaimUuid; //wird automatisch bei Anlegen erzeugt
   field ( readonly ) WorkerUuid;
 
-  association _Worker;
+  association _Worker { with draft; }
 
   mapping for zcr2023_claim corresponding
-  {
-  ClaimUuid = claim_uuid;
-  WorkerUuid = worker_uuid;
+    {
+      ClaimUuid  = claim_uuid;
+      WorkerUuid = worker_uuid;
+      CreatedAt = created_at;
+      CreatedBy = created_by;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+    }
+}
 
-  }
+/* Child Entity Request*/
+define behavior for ZR_CR2023_Request alias Request
+persistent table zcr2023_request
+draft table zcr2023_rqst_d
+lock dependent by _Worker
+authorization dependent by _Worker
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  action CancelRequest result[1] $self;
+
+  field ( readonly, numbering : managed ) RequestUuid; //wird automatisch bei Anlegen erzeugt
+  field ( readonly ) Applicant;
+
+  association _Worker { with draft; }
+
+
+  mapping for zcr2023_request corresponding
+    {
+      RequestUuid = request_uuid;
+      CreatedAt = created_at;
+      CreatedBy = created_by;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+    }
 }

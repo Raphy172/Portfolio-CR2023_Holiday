@@ -32,6 +32,20 @@ annotate view ZC_ZCR2023_Claim with
   @UI.lineItem: [{ position: 20 }]
   @UI.fieldGroup: [{ position: 20, qualifier: 'ClaimDetails' }]
   Vacations;
+  
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+    CreatedBy;
+    
+    @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+    CreatedAt;
+    
+    @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+    LastChangedBy;
+    
+    @UI.fieldGroup: [{ position: 60, qualifier: 'AdminData' }]
+    LastChangedAt;
+  
+  
 
 
 

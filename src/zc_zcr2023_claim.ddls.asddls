@@ -8,6 +8,10 @@ define view entity ZC_ZCR2023_Claim
       WorkerUuid,
       Year1,
       Vacations,
+      CreatedBy,
+      CreatedAt,
+      LastChangedBy,
+      LastChangedAt,
       /* Associations */
    _Worker : redirected to parent ZC_ZCR2023_Worker //bestehende Association umleiten um auf ZC zu zeigen
 }

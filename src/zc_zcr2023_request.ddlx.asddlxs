@@ -1,0 +1,62 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeName: 'Request',
+  typeNamePlural: 'Requests',
+  title.value: 'RequestUuid',
+  description.value: '_Worker.Surname'
+  
+ }
+@UI.presentationVariant: [{sortOrder: [{ by: 'Startdate', direction: #DESC }]}]
+annotate view ZC_ZCR2023_REQUEST
+    with 
+{
+/*facets*/
+   @UI.facet:
+  [
+    { position: 10, targetQualifier: 'Request Details', label: 'RequestDetails', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+  ]
+    /*actions*/
+    @UI.lineItem:[{position:10,type:#FOR_ACTION,dataAction:'CancelRequest',label:'Cancel Request'}]
+
+    
+    
+    
+  
+    /* Fields */
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+    RequestUuid;
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'RequestDetails' }]
+    Applicant;
+    @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'RequestDetails' }]
+    Approve;
+    @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'RequestDetails' }]
+    Startdate;
+    @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'RequestDetails' }]
+    Enddate;
+    @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'RequestDetails' }]
+    Comment1;
+    @UI.lineItem: [{ position: 60, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON}]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'RequestDetails' }]
+    Status;
+    
+ @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+    CreatedBy;
+    
+    @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+    CreatedAt;
+    
+    @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+    LastChangedBy;
+    
+    @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+    LastChangedAt;
+  
+   
+    }

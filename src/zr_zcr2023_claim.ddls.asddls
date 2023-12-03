@@ -10,6 +10,10 @@ define view entity ZR_ZCR2023_Claim
       worker_uuid as WorkerUuid,
       year1       as Year1,
       vacations   as Vacations,
+      created_by as CreatedBy,
+      created_at as CreatedAt,
+      last_changed_by as LastChangedBy,
+      last_changed_at as LastChangedAt,
 
       /* Associtations*/
       _Worker

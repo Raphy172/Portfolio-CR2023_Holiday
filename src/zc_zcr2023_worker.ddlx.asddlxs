@@ -5,6 +5,7 @@
     title.value: 'WorkerNr',
     description.value: 'Surname'
 }
+//@UI.presentationVariant: [{sortOrder: [{ by: 'Surname', direction: #DESC }]}]
 annotate entity ZC_ZCR2023_Worker
     with 
 {
@@ -13,8 +14,9 @@ annotate entity ZC_ZCR2023_Worker
     @UI.facet: 
     [
         { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Worker Details', targetQualifier: 'WorkerDetails' },
-        { position: 15, type: #LINEITEM_REFERENCE, targetElement: '_Claims', label: 'Claim Details' }, //fehler? nur Claim?
-        { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'AdminData'}
+        { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Administrative Data', targetQualifier: 'AdminData'},
+        { position: 30, type: #LINEITEM_REFERENCE, targetElement: '_Claim', label: 'Claim Details' }, 
+        { position: 40, type: #LINEITEM_REFERENCE, targetElement: '_Request', label: 'Request Details' }
     ]
 
     /*Fields*/
@@ -40,6 +42,19 @@ annotate entity ZC_ZCR2023_Worker
     @UI.selectionField: [{ position: 20 }] //für suche
     @UI.fieldGroup: [{ position: 50, qualifier: 'WorkerDetails' }]
     BeginDate;
+    
+    @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+    CreatedBy;
+    
+    @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+    CreatedAt;
+    
+    @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+    LastChangedBy;
+    
+    @UI.fieldGroup: [{ position: 60, qualifier: 'AdminData' }]
+    LastChangedAt;
+  
 
 
    // element_name;
