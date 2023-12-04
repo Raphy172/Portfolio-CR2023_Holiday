@@ -14,7 +14,7 @@ annotate view ZC_ZCR2023_REQUEST
 /*facets*/
    @UI.facet:
   [
-    { position: 10, targetQualifier: 'Request Details', label: 'RequestDetails', type: #FIELDGROUP_REFERENCE },
+    { position: 10, targetQualifier: 'RequestDetails', label: 'RequestDetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
   ]
     /*actions*/

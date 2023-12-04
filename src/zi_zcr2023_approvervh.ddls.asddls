@@ -3,6 +3,7 @@
 
 define view entity ZI_ZCR2023_ApproverVH as select from zcr2023_worker
 {
+@UI.hidden: true
 key worker_uuid as WorkerUuid,
 worker_nr as WorkerNr,
 surname as Surname,

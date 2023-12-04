@@ -12,7 +12,7 @@ annotate view ZC_ZCR2023_Claim with
   /* Facets */
   @UI.facet:
   [
-    { position: 10, targetQualifier: 'Claim Details', label: 'ClaimDetails', type: #FIELDGROUP_REFERENCE },
+    { position: 10, targetQualifier: 'ClaimDetails', label: 'ClaimDetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
   ]
 
